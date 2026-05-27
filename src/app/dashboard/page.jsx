@@ -73,11 +73,21 @@ export default function AcademiaBienvenida() {
 
                         {/* Left — title + subtitle */}
                         <div className="flex-1 space-y-5">
-                            <motion.h1
+                            <motion.p
                                 variants={fadeUp}
                                 initial="hidden"
                                 animate="visible"
                                 custom={1}
+                                className="bg-linear-to-r from-amber-300 to-yellow-200 bg-clip-text text-[13px] font-semibold uppercase tracking-[0.14em] text-transparent"
+                            >
+                                Bienvenidos a la Academia AgendaClinica
+                            </motion.p>
+
+                            <motion.h1
+                                variants={fadeUp}
+                                initial="hidden"
+                                animate="visible"
+                                custom={2}
                                 className="text-4xl font-bold leading-tight text-white sm:text-5xl lg:text-[3.25rem]"
                             >
                                 Todo lo que necesitas para dominar AgendaClinica
@@ -87,7 +97,7 @@ export default function AcademiaBienvenida() {
                                 variants={fadeUp}
                                 initial="hidden"
                                 animate="visible"
-                                custom={2}
+                                custom={3}
                                 className="max-w-md rounded-2xl border border-white/20 bg-white/15 p-5 backdrop-blur-sm"
                             >
                                 <p className="text-justify text-base leading-relaxed text-gray-300">
@@ -104,7 +114,7 @@ export default function AcademiaBienvenida() {
                                     variants={fadeUp}
                                     initial="hidden"
                                     animate="visible"
-                                    custom={i + 3}
+                                    custom={i + 4}
                                     className="flex items-start gap-3 rounded-2xl border border-white/20 bg-white/15 p-4 backdrop-blur-sm"
                                 >
                                     <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-xl bg-white/10">
@@ -129,7 +139,7 @@ export default function AcademiaBienvenida() {
                         variants={fadeUp}
                         initial="hidden"
                         animate="visible"
-                        custom={7}
+                        custom={8}
                         className="relative min-h-0 flex-1 overflow-hidden rounded-2xl"
                     >
                         <div className="absolute inset-0 bg-white opacity-20 blur-[10rem]" />
