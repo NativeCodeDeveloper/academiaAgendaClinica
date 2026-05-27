@@ -1,8 +1,6 @@
 import "./globals.css";
 import { AnimatedLayout } from "@/Componentes/AnimatedLayout";
 import AgendaProvider from "@/ContextosGlobales/AgendaContext";
-import { ClerkProvider } from "@clerk/nextjs";
-import { isClerkDisabled } from "@/lib/clerk-local";
 import { Inter, Outfit, Lora } from "next/font/google";
 
 const inter = Inter({
@@ -27,6 +25,7 @@ const lora = Lora({
 export const metadataBase = new URL(process.env.NEXT_PUBLIC_SITE_URL || "https://agendaclinica.cl");
 
 export const metadata = {
+  metadataBase,
   title: {
     default: "Agenda Clínica | Sistema de Agendamiento Médico Online",
     template: "%s | Agenda Clínica",
@@ -99,7 +98,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="es" className={`${inter.variable} ${outfit.variable} ${lora.variable}`}>
       <body className="min-h-screen bg-white">
-        {isClerkDisabled ? content : <ClerkProvider>{content}</ClerkProvider>}
+        {content}
       </body>
     </html>
   );

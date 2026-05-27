@@ -1,10 +1,7 @@
-import { currentUser } from "@clerk/nextjs/server";
 import Link from "next/link";
 import { Michroma } from "next/font/google";
 import MobileNav from "./MobileNav";
-import SignOutBtn from "./SignOutBtn";
-import { getDashboardRoleFromUser, getDashboardSectionsForRole } from "@/lib/dashboard-access";
-import { isClerkDisabled } from "@/lib/clerk-local";
+import { getDashboardSectionsForRole } from "@/lib/dashboard-access";
 
 const michroma = Michroma({ weight: "400", subsets: ["latin"], display: "swap" });
 
@@ -102,8 +99,7 @@ function DesktopSection({ title, icon, items }) {
 }
 
 export default async function DashboardLayout({ children }) {
-    const user = isClerkDisabled ? null : await currentUser();
-    const role = isClerkDisabled ? "admin" : getDashboardRoleFromUser(user);
+    const role = "admin";
     const desktopSections = getDashboardSectionsForRole(role);
 
     return (
