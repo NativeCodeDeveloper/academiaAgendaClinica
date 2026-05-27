@@ -10,6 +10,8 @@ export const DASHBOARD_NAV_SECTIONS = [
       { href: "/dashboard/moduloFichaClinica", label: "Completado de Fichas Clínicas" },
       { href: "/dashboard/principal", label: "Principal" },
       { href: "/dashboard/accesoFichas", label: "Acceso a Fichas" },
+      { href: "/dashboard/recetaRapida", label: "Receta Rapida" },
+      { href: "/dashboard/recetasHistorial", label: "Recetas (Historial)" },
       { href: "/dashboard/bloqueos", label: "Bloqueo de Agenda" },
     ],
   },

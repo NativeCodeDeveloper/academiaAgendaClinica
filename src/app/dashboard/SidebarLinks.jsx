@@ -4,6 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import {
     Calendar,
+    FileText,
     FolderOpen,
     Home,
     LayoutDashboard,
@@ -18,6 +19,8 @@ const itemIcons = {
     "/dashboard/moduloOdontograma": Scan,
     "/dashboard/principal": LayoutDashboard,
     "/dashboard/accesoFichas": FolderOpen,
+    "/dashboard/recetaRapida": FileText,
+    "/dashboard/recetasHistorial": FileText,
 };
 
 export default function SidebarLinks({ items }) {
