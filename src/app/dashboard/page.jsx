@@ -38,7 +38,7 @@ const features = [
 
 export default function AcademiaBienvenida() {
     return (
-        <div className="relative h-screen overflow-hidden bg-black">
+        <div className="relative min-h-screen bg-black lg:h-screen lg:overflow-hidden">
 
             {/* Gradient orbs */}
             <div className="absolute -right-60 -top-10 z-0 flex flex-col items-end blur-xl">
@@ -51,7 +51,7 @@ export default function AcademiaBienvenida() {
             <div className="absolute inset-0 z-0 bg-noise opacity-30" />
 
             {/* Content */}
-            <div className="relative z-10 flex h-full flex-col px-4 pt-10 sm:px-6 lg:px-8">
+            <div className="relative z-10 flex flex-col px-4 pb-10 pt-10 sm:px-6 lg:h-full lg:pb-0 lg:px-8">
                 <div className="mx-auto flex w-full max-w-5xl flex-1 flex-col">
 
                     {/* Badge */}
@@ -60,7 +60,7 @@ export default function AcademiaBienvenida() {
                         initial="hidden"
                         animate="visible"
                         custom={0}
-                        className="mb-8 flex w-fit items-center gap-2 rounded-full bg-white/10 px-4 py-2 backdrop-blur-sm"
+                        className="mb-6 flex w-fit items-center gap-2 rounded-full bg-white/10 px-4 py-2 backdrop-blur-sm lg:mb-8"
                     >
                         <span className="text-sm font-medium text-white">
                             Cápsulas de entrenamiento disponibles
@@ -68,17 +68,17 @@ export default function AcademiaBienvenida() {
                         <ArrowRight className="h-4 w-4 text-white" strokeWidth={2} />
                     </motion.div>
 
-                    {/* Two-column: title left / cards right — always side by side */}
-                    <div className="flex items-start gap-10 pb-8">
+                    {/* Two-column on desktop, stacked on mobile */}
+                    <div className="flex flex-col gap-6 pb-6 lg:flex-row lg:items-start lg:gap-10 lg:pb-8">
 
                         {/* Left — title + subtitle */}
-                        <div className="flex-1 space-y-5">
+                        <div className="flex-1 space-y-4 lg:space-y-5">
                             <motion.p
                                 variants={fadeUp}
                                 initial="hidden"
                                 animate="visible"
                                 custom={1}
-                                className="bg-linear-to-r from-amber-300 to-yellow-200 bg-clip-text text-[13px] font-semibold uppercase tracking-[0.14em] text-transparent"
+                                className="text-[13px] font-semibold uppercase tracking-[0.14em] text-amber-300"
                             >
                                 Bienvenidos a la Academia AgendaClinica
                             </motion.p>
@@ -88,7 +88,7 @@ export default function AcademiaBienvenida() {
                                 initial="hidden"
                                 animate="visible"
                                 custom={2}
-                                className="text-4xl font-bold leading-tight text-white sm:text-5xl lg:text-[3.25rem]"
+                                className="text-3xl font-bold leading-tight text-white sm:text-4xl lg:text-[3.25rem]"
                             >
                                 Todo lo que necesitas para dominar AgendaClinica
                             </motion.h1>
@@ -98,16 +98,16 @@ export default function AcademiaBienvenida() {
                                 initial="hidden"
                                 animate="visible"
                                 custom={3}
-                                className="max-w-md rounded-2xl border border-white/20 bg-white/15 p-5 backdrop-blur-sm"
+                                className="rounded-2xl border border-white/20 bg-white/15 p-4 backdrop-blur-sm lg:max-w-md lg:p-5"
                             >
-                                <p className="text-justify text-base leading-relaxed text-gray-300">
+                                <p className="text-justify text-sm leading-relaxed text-gray-300 lg:text-base">
                                     Esta plataforma es tu guía oficial para aprender a usar el sistema. Navega por los módulos del menú lateral y accede a cada cápsula cuando lo necesites.
                                 </p>
                             </motion.div>
                         </div>
 
-                        {/* Right — feature cards stacked */}
-                        <div className="w-72 shrink-0 space-y-3">
+                        {/* Right — 2-col grid on mobile, stacked on desktop */}
+                        <div className="grid grid-cols-2 gap-3 lg:block lg:w-72 lg:shrink-0 lg:space-y-3">
                             {features.map((f, i) => (
                                 <motion.div
                                     key={f.title}
@@ -115,13 +115,13 @@ export default function AcademiaBienvenida() {
                                     initial="hidden"
                                     animate="visible"
                                     custom={i + 4}
-                                    className="flex items-start gap-3 rounded-2xl border border-white/20 bg-white/15 p-4 backdrop-blur-sm"
+                                    className="flex items-start gap-3 rounded-2xl border border-white/20 bg-white/15 p-3 backdrop-blur-sm lg:p-4"
                                 >
                                     <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-xl bg-white/10">
                                         <f.icon className="h-4 w-4 text-white" strokeWidth={1.75} />
                                     </div>
                                     <div>
-                                        <p className="text-[13px] font-semibold leading-snug text-white">
+                                        <p className="text-[12px] font-semibold leading-snug text-white lg:text-[13px]">
                                             {f.title}
                                         </p>
                                         <p className="mt-0.5 text-[11px] leading-snug text-white/50">
@@ -134,20 +134,21 @@ export default function AcademiaBienvenida() {
 
                     </div>
 
-                    {/* Hero image — fills remaining height */}
+                    {/* Hero image — fixed height on mobile, fills remaining on desktop */}
                     <motion.div
                         variants={fadeUp}
                         initial="hidden"
                         animate="visible"
                         custom={8}
-                        className="relative min-h-0 flex-1 overflow-hidden rounded-2xl"
+                        className="relative h-52 overflow-hidden rounded-2xl sm:h-64 lg:min-h-0 lg:flex-1"
                     >
                         <div className="absolute inset-0 bg-white opacity-20 blur-[10rem]" />
                         <img
-                            src="/imagenac_nc.png"
+                            src="/capturaac.png"
                             alt="AgendaClinica"
                             className="relative h-full w-full object-cover object-top shadow-lg"
                         />
+                        <div className="absolute inset-0 bg-linear-to-t from-black/80 via-black/30 to-transparent" />
                     </motion.div>
 
                 </div>
