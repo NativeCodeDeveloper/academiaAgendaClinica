@@ -140,7 +140,7 @@ export default function AcademiaBienvenida() {
                         initial="hidden"
                         animate="visible"
                         custom={8}
-                        className="relative h-52 overflow-hidden rounded-2xl sm:h-64 lg:min-h-0 lg:flex-1"
+                        className="relative hidden overflow-hidden rounded-2xl sm:block sm:aspect-video lg:aspect-auto lg:min-h-0 lg:flex-1"
                     >
                         <div className="absolute inset-0 bg-white opacity-20 blur-[10rem]" />
                         <img
