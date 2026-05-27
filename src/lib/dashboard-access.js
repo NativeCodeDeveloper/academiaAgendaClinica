@@ -7,8 +7,10 @@ export const DASHBOARD_NAV_SECTIONS = [
       { href: "/dashboard/editarPaciente", label: "Editar Paciente" },
       { href: "/dashboard/moduloAgenda", label: "Agenda" },
       { href: "/dashboard/moduloOdontograma", label: "Odontograma" },
+      { href: "/dashboard/moduloFichaClinica", label: "Completado de Fichas Clínicas" },
       { href: "/dashboard/principal", label: "Principal" },
       { href: "/dashboard/accesoFichas", label: "Acceso a Fichas" },
+      { href: "/dashboard/bloqueos", label: "Bloqueo de Agenda" },
     ],
   },
 ];

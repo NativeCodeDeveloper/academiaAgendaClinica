@@ -15,7 +15,7 @@ const fadeUp = {
     }),
 };
 
-const YOUTUBE_URL = "";
+const YOUTUBE_URL = "https://youtu.be/yDdmbRoMN-Y";
 
 export default function CapsulaBloqueos() {
     return (
@@ -32,45 +32,76 @@ export default function CapsulaBloqueos() {
                             Cápsula
                         </div>
                         <h1 className={michroma.className + " text-[1.5rem] leading-[1.08] sm:text-[2rem] lg:text-[2.4rem]"}>
-                            <span className="bg-gradient-to-r from-cyan-600 via-sky-500 to-indigo-600 bg-clip-text text-transparent">Bloqueos</span>
+                            <span className="bg-gradient-to-r from-cyan-600 via-sky-500 to-indigo-600 bg-clip-text text-transparent">Bloqueo de Agenda</span>
                         </h1>
                     </motion.div>
 
                     <motion.div variants={fadeUp} initial="hidden" animate="visible" custom={2} className="mt-8">
                         <div className="overflow-hidden rounded-[1.75rem] border border-white/70 bg-white/88 shadow-[0_28px_80px_rgba(15,23,42,0.12)] backdrop-blur-xl">
-                            {YOUTUBE_URL ? (
-                                <div className="aspect-video w-full">
-                                    <iframe
-                                        className="h-full w-full"
-                                        src={YOUTUBE_URL.replace("watch?v=", "embed/")}
-                                        title="Cápsula — Bloqueos"
-                                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                                        allowFullScreen
-                                    />
-                                </div>
-                            ) : (
-                                <div className="aspect-video w-full bg-slate-50/80">
-                                    <div className="flex h-full items-center justify-center">
-                                        <div className="text-center">
-                                            <svg xmlns="http://www.w3.org/2000/svg" className="mx-auto h-16 w-16 text-slate-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1}>
-                                                <path strokeLinecap="round" strokeLinejoin="round" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z" />
-                                                <path strokeLinecap="round" strokeLinejoin="round" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                                            </svg>
-                                            <p className="mt-3 text-sm font-medium text-slate-400">Video próximamente</p>
-                                            <p className="mt-1 text-xs text-slate-400">Inserte la URL de YouTube en la constante YOUTUBE_URL</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            )}
+                            <div className="aspect-video w-full">
+                                <iframe
+                                    className="h-full w-full"
+                                    src={YOUTUBE_URL.includes("youtu.be/") ? YOUTUBE_URL.replace("youtu.be/", "youtube.com/embed/") : YOUTUBE_URL.replace("watch?v=", "embed/")}
+                                    title="Cápsula - Bloqueo de Agenda"
+                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                    allowFullScreen
+                                />
+                            </div>
                         </div>
                     </motion.div>
 
                     <motion.div variants={fadeUp} initial="hidden" animate="visible" custom={2.5} className="mt-6">
-                        <div className="rounded-[1.75rem] border border-white/70 bg-white/88 p-6 shadow-[0_28px_80px_rgba(15,23,42,0.12)] backdrop-blur-xl sm:p-8">
-                            <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-cyan-700">Descripción</p>
-                            <p className="mt-3 text-[14px] leading-relaxed text-slate-600">
-                                En esta cápsula aprenderás a bloquear horarios en la agenda de profesionales, impidiendo que se agenden citas en rangos específicos de fecha y hora por ausencias, reuniones u otros motivos.
-                            </p>
+                        <div className="space-y-7 rounded-[1.75rem] border border-white/70 bg-white/88 p-6 shadow-[0_28px_80px_rgba(15,23,42,0.12)] backdrop-blur-xl sm:p-8">
+                            <section>
+                                <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-cyan-700">Descripción</p>
+                                <p className="mt-3 text-[14px] leading-relaxed text-slate-600">
+                                    En esta cápsula aprenderá cómo realizar bloqueos de agenda dentro de AgendaClinica, permitiendo organizar de mejor manera la disponibilidad de los profesionales y evitar reservas en horarios no disponibles.
+                                </p>
+                            </section>
+
+                            <section>
+                                <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-cyan-700">Desde este módulo podrá</p>
+                                <ul className="mt-3 space-y-2 text-[14px] leading-relaxed text-slate-600">
+                                    <li>Bloquear días completos de atención</li>
+                                    <li>Bloquear horarios específicos</li>
+                                    <li>Configurar períodos no disponibles por reuniones, vacaciones, almuerzos o actividades internas</li>
+                                    <li>Mantener la agenda organizada y sincronizada con la disponibilidad real del profesional</li>
+                                </ul>
+                            </section>
+
+                            <section>
+                                <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-cyan-700">Preguntas frecuentes</p>
+
+                                <div className="mt-4 space-y-5 text-[14px] leading-relaxed text-slate-600">
+                                    <div>
+                                        <h2 className="text-[15px] font-semibold text-slate-800">¿Puedo definir cuánto duran mis atenciones desde este módulo?</h2>
+                                        <p className="mt-2">
+                                            No. La duración de las atenciones se configura desde el módulo Tarifas dentro de Configuración.
+                                        </p>
+                                    </div>
+
+                                    <div>
+                                        <h2 className="text-[15px] font-semibold text-slate-800">¿Puedo bloquear días de forma individual?</h2>
+                                        <p className="mt-2">
+                                            Sí es posible. Sin embargo, esta funcionalidad avanzada debe ser solicitada mediante soporte técnico y tiene un valor adicional por profesional.
+                                        </p>
+                                    </div>
+
+                                    <div>
+                                        <h2 className="text-[15px] font-semibold text-slate-800">¿Puedo bloquear a un paciente específico para que no pueda volver a agendar?</h2>
+                                        <p className="mt-2">
+                                            No. AgendaClinica no aplica restricciones ni bloqueos individuales sobre pacientes para impedir futuras reservas.
+                                        </p>
+                                    </div>
+                                </div>
+                            </section>
+
+                            <section className="rounded-2xl border border-cyan-100 bg-cyan-50/70 p-4">
+                                <p className="text-[13px] font-semibold text-cyan-800">Recomendación</p>
+                                <p className="mt-2 text-[14px] leading-relaxed text-slate-600">
+                                    Mantener la agenda correctamente bloqueada ayuda a evitar sobrecupos, errores de coordinación y reservas fuera del horario de atención.
+                                </p>
+                            </section>
                         </div>
                     </motion.div>
                 </div>
