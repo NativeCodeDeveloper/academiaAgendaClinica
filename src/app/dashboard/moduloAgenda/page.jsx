@@ -1,10 +1,7 @@
 "use client";
 
-import OrbBackground from "@/components/OrbBackground";
-import { Michroma } from "next/font/google";
 import { motion } from "framer-motion";
-
-const michroma = Michroma({ weight: "400", subsets: ["latin"], display: "swap" });
+import { PlayCircle } from "lucide-react";
 
 const fadeUp = {
     hidden: { opacity: 0, y: 24 },
@@ -19,72 +16,68 @@ const YOUTUBE_URL = "https://www.youtube.com/watch?v=ga44dJoW62c";
 
 export default function CapsulaAgenda() {
     return (
-        <OrbBackground orbX={0.75} orbY={0.50}>
-            <div className="min-h-screen px-4 py-6 sm:px-6 lg:px-8">
-                <div className="mx-auto max-w-4xl">
-                    <motion.div variants={fadeUp} initial="hidden" animate="visible" custom={0} className="mb-6 flex items-center gap-2">
-                        <p className={michroma.className + " text-[13px] bg-gradient-to-r from-cyan-700 via-cyan-600 to-indigo-700 bg-clip-text text-transparent"}>AgendaClinica</p>
-                        <span className="text-[10px] uppercase tracking-[0.22em] text-slate-400">/ Academia</span>
-                    </motion.div>
+        <div className="min-h-screen bg-[#F5F5F7] px-4 py-10 sm:px-6 lg:px-8">
+            <div className="mx-auto max-w-4xl">
 
-                    <motion.div variants={fadeUp} initial="hidden" animate="visible" custom={1}>
-                        <div className="mb-4 inline-flex items-center rounded-full border border-cyan-100 bg-white/85 px-3 py-1.5 text-[10px] font-semibold uppercase tracking-[0.22em] text-cyan-700 shadow-sm">
-                            Cápsula
-                        </div>
-                        <h1 className={michroma.className + " text-[1.5rem] leading-[1.08] sm:text-[2rem] lg:text-[2.4rem]"}>
-                            <span className="text-slate-900">Módulo </span>
-                            <span className="bg-gradient-to-r from-cyan-600 via-sky-500 to-indigo-600 bg-clip-text text-transparent">Agenda</span>
-                        </h1>
-                    </motion.div>
+                <motion.div variants={fadeUp} initial="hidden" animate="visible" custom={0} className="mb-8 flex items-center gap-1.5">
+                    <span className="text-[13px] font-semibold text-[#1D1D1F]">AgendaClinica</span>
+                    <span className="text-[#D2D2D7]">/</span>
+                    <span className="text-[13px] text-[#6E6E73]">Academia</span>
+                </motion.div>
 
-                    <motion.div variants={fadeUp} initial="hidden" animate="visible" custom={2} className="mt-8">
-                        <div className="overflow-hidden rounded-[1.75rem] border border-white/70 bg-white/88 shadow-[0_28px_80px_rgba(15,23,42,0.12)] backdrop-blur-xl">
-                            {YOUTUBE_URL ? (
-                                <div className="aspect-video w-full">
-                                    <iframe
-                                        className="h-full w-full"
-                                        src={YOUTUBE_URL.replace("watch?v=", "embed/")}
-                                        title="Cápsula — Agenda"
-                                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                                        allowFullScreen
-                                    />
+                <motion.div variants={fadeUp} initial="hidden" animate="visible" custom={1} className="mb-8">
+                    <span className="mb-4 inline-block rounded-full border border-[#D2D2D7] bg-white px-3 py-1 text-[11px] font-medium uppercase tracking-[0.14em] text-[#6E6E73] shadow-sm">
+                        Cápsula
+                    </span>
+                    <h1 className="text-[1.75rem] font-semibold leading-[1.05] tracking-tight text-[#1D1D1F] sm:text-[2.25rem] lg:text-[2.75rem]">
+                        Módulo Agenda
+                    </h1>
+                </motion.div>
+
+                <motion.div variants={fadeUp} initial="hidden" animate="visible" custom={2} className="mb-6">
+                    <div className="overflow-hidden rounded-2xl border border-[#D2D2D7] bg-white shadow-sm">
+                        {YOUTUBE_URL ? (
+                            <div className="aspect-video w-full">
+                                <iframe
+                                    className="h-full w-full"
+                                    src={YOUTUBE_URL.replace("watch?v=", "embed/")}
+                                    title="Cápsula — Agenda"
+                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                    allowFullScreen
+                                />
+                            </div>
+                        ) : (
+                            <div className="aspect-video w-full bg-[#F5F5F7] flex items-center justify-center">
+                                <div className="text-center">
+                                    <PlayCircle className="mx-auto h-14 w-14 text-[#D2D2D7]" strokeWidth={1} />
+                                    <p className="mt-3 text-sm font-medium text-[#86868B]">Video próximamente</p>
                                 </div>
-                            ) : (
-                                <div className="aspect-video w-full bg-slate-50/80">
-                                    <div className="flex h-full items-center justify-center">
-                                        <div className="text-center">
-                                            <svg xmlns="http://www.w3.org/2000/svg" className="mx-auto h-16 w-16 text-slate-300" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1}>
-                                                <path strokeLinecap="round" strokeLinejoin="round" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z" />
-                                                <path strokeLinecap="round" strokeLinejoin="round" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                                            </svg>
-                                            <p className="mt-3 text-sm font-medium text-slate-400">Video próximamente</p>
-                                            <p className="mt-1 text-xs text-slate-400">Inserte la URL de YouTube en la constante YOUTUBE_URL</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            )}
-                        </div>
-                    </motion.div>
+                            </div>
+                        )}
+                    </div>
+                </motion.div>
 
-                    <motion.div variants={fadeUp} initial="hidden" animate="visible" custom={2.5} className="mt-6">
-                        <div className="rounded-[1.75rem] border border-white/70 bg-white/88 p-6 shadow-[0_28px_80px_rgba(15,23,42,0.12)] backdrop-blur-xl sm:p-8">
-                            <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-cyan-700">Descripción</p>
-                            <p className="mt-3 text-[14px] leading-relaxed text-slate-600">
-                                En este módulo aprenderás cómo realizar un agendamiento manual directamente desde el dashboard de AgendaClinica.
-                            </p>
-                            <p className="mt-3 text-[14px] leading-relaxed text-slate-600">
-                                Se muestra paso a paso cómo registrar una nueva cita, seleccionar al profesional, asignar fecha y hora, ingresar los datos del paciente y gestionar la reserva de manera rápida y ordenada.
-                            </p>
-                            <p className="mt-3 text-[14px] leading-relaxed text-slate-600">
-                                Este proceso permite mantener una administración eficiente de la agenda clínica, optimizando la organización de las atenciones y mejorando la experiencia tanto para el equipo de trabajo como para los pacientes.
-                            </p>
-                            <p className="mt-3 text-[14px] leading-relaxed text-slate-600">
-                                Ideal para recepcionistas, administradores y profesionales que necesitan gestionar reservas manualmente desde el panel principal del sistema.
-                            </p>
-                        </div>
-                    </motion.div>
-                </div>
+                <motion.div variants={fadeUp} initial="hidden" animate="visible" custom={2.5}>
+                    <div className="rounded-2xl border border-[#D2D2D7] bg-white p-6 shadow-sm sm:p-8">
+                        <p className="mb-3 text-[11px] font-semibold uppercase tracking-[0.16em] text-[#6E6E73]">
+                            Descripción
+                        </p>
+                        <p className="text-[15px] leading-relaxed text-[#1D1D1F]">
+                            En este módulo aprenderás cómo realizar un agendamiento manual directamente desde el dashboard de AgendaClinica.
+                        </p>
+                        <p className="mt-4 text-[15px] leading-relaxed text-[#6E6E73]">
+                            Se muestra paso a paso cómo registrar una nueva cita, seleccionar al profesional, asignar fecha y hora, ingresar los datos del paciente y gestionar la reserva de manera rápida y ordenada.
+                        </p>
+                        <p className="mt-4 text-[15px] leading-relaxed text-[#6E6E73]">
+                            Este proceso permite mantener una administración eficiente de la agenda clínica, optimizando la organización de las atenciones y mejorando la experiencia tanto para el equipo de trabajo como para los pacientes.
+                        </p>
+                        <p className="mt-4 text-[15px] leading-relaxed text-[#6E6E73]">
+                            Ideal para recepcionistas, administradores y profesionales que necesitan gestionar reservas manualmente desde el panel principal del sistema.
+                        </p>
+                    </div>
+                </motion.div>
+
             </div>
-        </OrbBackground>
+        </div>
     );
 }
