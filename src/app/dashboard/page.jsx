@@ -146,7 +146,7 @@ export default function AcademiaBienvenida() {
                         <img
                             src="/capturaac.png"
                             alt="AgendaClinica"
-                            className="relative h-full w-full object-cover object-top shadow-lg"
+                            className="relative h-full w-full object-contain object-top shadow-lg"
                         />
                         <div className="absolute inset-0 bg-linear-to-t from-black/80 via-black/30 to-transparent" />
                     </motion.div>
