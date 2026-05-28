@@ -3,6 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import ToothIcon from "./ToothIcon";
 import {
     Calendar,
     CalendarX,
@@ -15,7 +16,7 @@ import {
     LayoutDashboard,
     Menu,
     PlayCircle,
-    Scan,
+    ReceiptText,
     UserCog,
     X,
 } from "lucide-react";
@@ -25,7 +26,7 @@ const itemIcons = {
     "/dashboard": Home,
     "/dashboard/editarPaciente": UserCog,
     "/dashboard/moduloAgenda": Calendar,
-    "/dashboard/moduloOdontograma": Scan,
+    "/dashboard/moduloOdontograma": ToothIcon,
     "/dashboard/moduloFichaClinica": ClipboardList,
     "/dashboard/principal": LayoutDashboard,
     "/dashboard/accesoFichas": FolderOpen,
@@ -34,6 +35,7 @@ const itemIcons = {
     "/dashboard/recetasHistorial": FileText,
     "/dashboard/bloqueos": CalendarX,
     "/dashboard/horasPaginaWeb": Clock,
+    "/dashboard/generacionPresupuestos": ReceiptText,
 };
 
 const sectionIconMap = {

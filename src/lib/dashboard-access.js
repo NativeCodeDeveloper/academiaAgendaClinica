@@ -15,6 +15,7 @@ export const DASHBOARD_NAV_SECTIONS = [
       { href: "/dashboard/recetasHistorial", label: "Recetas (Historial)" },
       { href: "/dashboard/bloqueos", label: "Bloqueo de Agenda" },
       { href: "/dashboard/horasPaginaWeb", label: "Horas en Página Web" },
+      { href: "/dashboard/generacionPresupuestos", label: "Generación de Presupuestos" },
     ],
   },
 ];
