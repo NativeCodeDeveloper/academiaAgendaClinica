@@ -6,6 +6,7 @@ import { usePathname } from "next/navigation";
 import {
     Calendar,
     CalendarX,
+    Clock,
     ClipboardList,
     FileText,
     FlaskConical,
@@ -32,6 +33,7 @@ const itemIcons = {
     "/dashboard/solicitudExamenes": FlaskConical,
     "/dashboard/recetasHistorial": FileText,
     "/dashboard/bloqueos": CalendarX,
+    "/dashboard/horasPaginaWeb": Clock,
 };
 
 const sectionIconMap = {
