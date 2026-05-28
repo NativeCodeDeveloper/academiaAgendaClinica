@@ -7,6 +7,7 @@ import {
     CalendarX,
     ClipboardList,
     FileText,
+    FlaskConical,
     FolderOpen,
     Home,
     LayoutDashboard,
@@ -23,6 +24,7 @@ const itemIcons = {
     "/dashboard/principal": LayoutDashboard,
     "/dashboard/accesoFichas": FolderOpen,
     "/dashboard/recetaRapida": FileText,
+    "/dashboard/solicitudExamenes": FlaskConical,
     "/dashboard/recetasHistorial": FileText,
     "/dashboard/bloqueos": CalendarX,
 };

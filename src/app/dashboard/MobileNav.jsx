@@ -5,6 +5,10 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import {
     Calendar,
+    CalendarX,
+    ClipboardList,
+    FileText,
+    FlaskConical,
     FolderOpen,
     Home,
     LayoutDashboard,
@@ -21,8 +25,13 @@ const itemIcons = {
     "/dashboard/editarPaciente": UserCog,
     "/dashboard/moduloAgenda": Calendar,
     "/dashboard/moduloOdontograma": Scan,
+    "/dashboard/moduloFichaClinica": ClipboardList,
     "/dashboard/principal": LayoutDashboard,
     "/dashboard/accesoFichas": FolderOpen,
+    "/dashboard/recetaRapida": FileText,
+    "/dashboard/solicitudExamenes": FlaskConical,
+    "/dashboard/recetasHistorial": FileText,
+    "/dashboard/bloqueos": CalendarX,
 };
 
 const sectionIconMap = {

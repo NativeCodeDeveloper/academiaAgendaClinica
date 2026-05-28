@@ -11,6 +11,7 @@ export const DASHBOARD_NAV_SECTIONS = [
       { href: "/dashboard/principal", label: "Principal" },
       { href: "/dashboard/accesoFichas", label: "Acceso a Fichas" },
       { href: "/dashboard/recetaRapida", label: "Receta Rapida" },
+      { href: "/dashboard/solicitudExamenes", label: "Solicitud de Exámenes" },
       { href: "/dashboard/recetasHistorial", label: "Recetas (Historial)" },
       { href: "/dashboard/bloqueos", label: "Bloqueo de Agenda" },
     ],
