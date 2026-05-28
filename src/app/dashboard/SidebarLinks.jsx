@@ -4,6 +4,8 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import {
     Calendar,
+    CalendarX,
+    ClipboardList,
     FileText,
     FolderOpen,
     Home,
@@ -17,10 +19,12 @@ const itemIcons = {
     "/dashboard/editarPaciente": UserCog,
     "/dashboard/moduloAgenda": Calendar,
     "/dashboard/moduloOdontograma": Scan,
+    "/dashboard/moduloFichaClinica": ClipboardList,
     "/dashboard/principal": LayoutDashboard,
     "/dashboard/accesoFichas": FolderOpen,
     "/dashboard/recetaRapida": FileText,
     "/dashboard/recetasHistorial": FileText,
+    "/dashboard/bloqueos": CalendarX,
 };
 
 export default function SidebarLinks({ items }) {
@@ -38,7 +42,7 @@ export default function SidebarLinks({ items }) {
                         href={item.href}
                         className={`flex items-center gap-3 rounded-lg px-3 py-2 text-[13px] font-normal transition-colors ${
                             isActive
-                                ? "bg-[#0071E3]/[0.12] text-[#0071E3]"
+                                ? "bg-[#0071E3]/12 text-[#0071E3]"
                                 : "text-white/60 hover:bg-white/[0.07] hover:text-white/90"
                         }`}
                     >

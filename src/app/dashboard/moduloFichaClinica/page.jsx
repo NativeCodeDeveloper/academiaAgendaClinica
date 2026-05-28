@@ -1,10 +1,6 @@
 "use client";
 
-import OrbBackground from "@/components/OrbBackground";
-import { Michroma } from "next/font/google";
 import { motion } from "framer-motion";
-
-const michroma = Michroma({ weight: "400", subsets: ["latin"], display: "swap" });
 
 const fadeUp = {
     hidden: { opacity: 0, y: 24 },
@@ -19,103 +15,88 @@ const YOUTUBE_URL = "https://youtu.be/kv0krMbZr3I";
 
 export default function CapsulaFichaClinica() {
     return (
-        <OrbBackground orbX={0.75} orbY={0.50}>
-            <div className="min-h-screen px-4 py-6 sm:px-6 lg:px-8">
-                <div className="mx-auto max-w-4xl">
-                    <motion.div variants={fadeUp} initial="hidden" animate="visible" custom={0} className="mb-6 flex items-center gap-2">
-                        <p className={michroma.className + " text-[13px] bg-gradient-to-r from-cyan-700 via-cyan-600 to-indigo-700 bg-clip-text text-transparent"}>AgendaClinica</p>
-                        <span className="text-[10px] uppercase tracking-[0.22em] text-slate-400">/ Academia</span>
-                    </motion.div>
+        <div className="min-h-screen bg-[#F5F5F7] px-4 py-10 sm:px-6 lg:px-8">
+            <div className="mx-auto max-w-4xl">
 
-                    <motion.div variants={fadeUp} initial="hidden" animate="visible" custom={1}>
-                        <div className="mb-4 inline-flex items-center rounded-full border border-cyan-100 bg-white/85 px-3 py-1.5 text-[10px] font-semibold uppercase tracking-[0.22em] text-cyan-700 shadow-sm">
-                            Cápsula
+                <motion.div variants={fadeUp} initial="hidden" animate="visible" custom={0} className="mb-8 flex items-center gap-1.5">
+                    <span className="text-[13px] font-semibold text-[#1D1D1F]">AgendaClinica</span>
+                    <span className="text-[#D2D2D7]">/</span>
+                    <span className="text-[13px] text-[#6E6E73]">Academia</span>
+                </motion.div>
+
+                <motion.div variants={fadeUp} initial="hidden" animate="visible" custom={1} className="mb-8">
+                    <span className="mb-4 inline-block rounded-full border border-[#D2D2D7] bg-white px-3 py-1 text-[11px] font-medium uppercase tracking-[0.14em] text-[#6E6E73] shadow-sm">
+                        Cápsula
+                    </span>
+                    <h1 className="text-[1.75rem] font-semibold leading-[1.05] tracking-tight text-[#1D1D1F] sm:text-[2.25rem] lg:text-[2.75rem]">
+                        Completado de Fichas Clínicas
+                    </h1>
+                </motion.div>
+
+                <motion.div variants={fadeUp} initial="hidden" animate="visible" custom={2} className="mb-6">
+                    <div className="overflow-hidden rounded-2xl border border-[#D2D2D7] bg-white shadow-sm">
+                        <div className="aspect-video w-full">
+                            <iframe
+                                className="h-full w-full"
+                                src={YOUTUBE_URL.replace("youtu.be/", "youtube.com/embed/")}
+                                title="Cápsula — Completado de Fichas Clínicas"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                allowFullScreen
+                            />
                         </div>
-                        <h1 className={michroma.className + " text-[1.5rem] leading-[1.08] sm:text-[2rem] lg:text-[2.4rem]"}>
-                            <span className="text-slate-900">Completado de </span>
-                            <span className="bg-gradient-to-r from-cyan-600 via-sky-500 to-indigo-600 bg-clip-text text-transparent">Fichas Clínicas</span>
-                        </h1>
-                    </motion.div>
+                    </div>
+                </motion.div>
 
-                    <motion.div variants={fadeUp} initial="hidden" animate="visible" custom={2} className="mt-8">
-                        <div className="overflow-hidden rounded-[1.75rem] border border-white/70 bg-white/88 shadow-[0_28px_80px_rgba(15,23,42,0.12)] backdrop-blur-xl">
-                            <div className="aspect-video w-full">
-                                <iframe
-                                    className="h-full w-full"
-                                    src={YOUTUBE_URL.includes("youtu.be/") ? YOUTUBE_URL.replace("youtu.be/", "youtube.com/embed/") : YOUTUBE_URL.replace("watch?v=", "embed/")}
-                                    title="Cápsula - Completado de Fichas Clínicas"
-                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                                    allowFullScreen
-                                />
+                <motion.div variants={fadeUp} initial="hidden" animate="visible" custom={2.5} className="mb-6">
+                    <div className="rounded-2xl border border-[#D2D2D7] bg-white p-6 shadow-sm sm:p-8">
+                        <p className="mb-3 text-[11px] font-semibold uppercase tracking-[0.16em] text-[#6E6E73]">
+                            Descripción
+                        </p>
+                        <p className="text-[15px] leading-relaxed text-[#1D1D1F]">
+                            En esta cápsula aprenderás cómo acceder y gestionar las fichas clínicas dentro de AgendaClinica.
+                        </p>
+                        <p className="mt-4 text-[15px] leading-relaxed text-[#6E6E73]">
+                            AgendaClinica permite que cada profesional pueda completar información clínica utilizando campos dinámicos configurables según las necesidades de cada centro médico o especialidad.
+                        </p>
+
+                        <p className="mb-3 mt-6 text-[11px] font-semibold uppercase tracking-[0.16em] text-[#6E6E73]">
+                            Durante este video se mostrará
+                        </p>
+                        <ul className="ml-4 list-disc space-y-1.5 text-[15px] leading-relaxed text-[#6E6E73]">
+                            <li>Cómo acceder a las fichas clínicas de los pacientes</li>
+                            <li>Cómo registrar información clínica</li>
+                            <li>Cómo visualizar el historial clínico del paciente</li>
+                            <li>Cómo trabajar con registros dinámicos según la especialidad del profesional</li>
+                            <li>Cómo mantener el seguimiento clínico de cada atención realizada</li>
+                        </ul>
+                    </div>
+                </motion.div>
+
+                <motion.div variants={fadeUp} initial="hidden" animate="visible" custom={3}>
+                    <div className="rounded-2xl border border-[#D2D2D7] bg-white p-6 shadow-sm sm:p-8">
+                        <p className="mb-5 text-[11px] font-semibold uppercase tracking-[0.16em] text-[#6E6E73]">
+                            Preguntas Frecuentes
+                        </p>
+
+                        <div className="space-y-3">
+                            <div className="rounded-xl border border-[#E8E8ED] bg-[#F5F5F7] p-4">
+                                <p className="text-[13px] font-semibold text-[#1D1D1F]">¿Se pueden agregar dibujos o anotaciones gráficas dentro de las fichas clínicas?</p>
+                                <p className="mt-1.5 text-[13px] text-[#6E6E73]">Actualmente el sistema no permite el uso de dibujos o anotaciones gráficas. El registro se realiza mediante campos de texto dinámicos personalizados según cada necesidad clínica.</p>
+                            </div>
+
+                            <div className="rounded-xl border border-[#E8E8ED] bg-[#F5F5F7] p-4">
+                                <p className="text-[13px] font-semibold text-[#1D1D1F]">¿Se pueden subir archivos PDF o imágenes?</p>
+                                <p className="mt-1.5 text-[13px] text-[#6E6E73]">Actualmente no es posible subir archivos PDF o imágenes directamente a las fichas clínicas. Sin embargo, esta funcionalidad ya se encuentra contemplada para próximas versiones de AgendaClinica.</p>
                             </div>
                         </div>
-                    </motion.div>
 
-                    <motion.div variants={fadeUp} initial="hidden" animate="visible" custom={2.5} className="mt-6">
-                        <div className="space-y-7 rounded-[1.75rem] border border-white/70 bg-white/88 p-6 shadow-[0_28px_80px_rgba(15,23,42,0.12)] backdrop-blur-xl sm:p-8">
-                            <section>
-                                <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-cyan-700">Descripción</p>
-                                <p className="mt-3 text-[14px] leading-relaxed text-slate-600">
-                                    En esta cápsula aprenderá cómo acceder y gestionar las fichas clínicas dentro de AgendaClinica.
-                                </p>
-                            </section>
+                        <p className="mt-6 text-[14px] leading-relaxed text-[#6E6E73]">
+                            Todas las nuevas actualizaciones y funcionalidades serán aplicadas automáticamente, previo aviso por parte del equipo de soporte. Cada nueva funcionalidad contará con cápsulas explicativas dentro de Academia AgendaClinica para facilitar su aprendizaje.
+                        </p>
+                    </div>
+                </motion.div>
 
-                            <section>
-                                <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-cyan-700">Durante este video se mostrará</p>
-                                <ul className="mt-3 space-y-2 text-[14px] leading-relaxed text-slate-600">
-                                    <li>Cómo acceder a las fichas clínicas de los pacientes</li>
-                                    <li>Cómo registrar información clínica</li>
-                                    <li>Cómo visualizar el historial clínico del paciente</li>
-                                    <li>Cómo trabajar con registros dinámicos según la especialidad del profesional</li>
-                                    <li>Cómo mantener el seguimiento clínico de cada atención realizada</li>
-                                </ul>
-                                <p className="mt-4 text-[14px] leading-relaxed text-slate-600">
-                                    AgendaClinica permite que cada profesional pueda completar información clínica utilizando campos dinámicos configurables según las necesidades de cada centro médico o especialidad.
-                                </p>
-                            </section>
-
-                            <section>
-                                <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-cyan-700">Preguntas frecuentes</p>
-
-                                <div className="mt-4 space-y-5 text-[14px] leading-relaxed text-slate-600">
-                                    <div>
-                                        <h2 className="text-[15px] font-semibold text-slate-800">¿Se pueden agregar dibujos o realizar anotaciones gráficas dentro de las fichas clínicas?</h2>
-                                        <p className="mt-2">
-                                            Actualmente el sistema no permite el uso de dibujos o anotaciones gráficas dentro de las fichas clínicas.
-                                        </p>
-                                        <p className="mt-2">
-                                            El registro se realiza mediante campos de texto dinámicos personalizados según cada necesidad clínica.
-                                        </p>
-                                    </div>
-
-                                    <div>
-                                        <h2 className="text-[15px] font-semibold text-slate-800">¿Se pueden subir archivos PDF o imágenes?</h2>
-                                        <p className="mt-2">
-                                            Actualmente no es posible subir archivos PDF o imágenes directamente a las fichas clínicas.
-                                        </p>
-                                        <p className="mt-2">
-                                            Sin embargo, esta funcionalidad ya se encuentra contemplada para próximas versiones de AgendaClinica.
-                                        </p>
-                                    </div>
-                                </div>
-                            </section>
-
-                            <section className="rounded-2xl border border-cyan-100 bg-cyan-50/70 p-4">
-                                <p className="text-[13px] font-semibold text-cyan-800">Actualizaciones</p>
-                                <p className="mt-2 text-[14px] leading-relaxed text-slate-600">
-                                    Todas las nuevas actualizaciones y funcionalidades serán aplicadas automáticamente para clientes múltiples, previo aviso por parte del equipo de soporte.
-                                </p>
-                                <p className="mt-2 text-[14px] leading-relaxed text-slate-600">
-                                    Podrá revisar las novedades y futuras mejoras desde el módulo de Inicio en el apartado de “Novedades”.
-                                </p>
-                                <p className="mt-2 text-[14px] leading-relaxed text-slate-600">
-                                    Además, cada nueva funcionalidad contará con cápsulas explicativas dentro de Academia AgendaClinica para facilitar su aprendizaje y utilización.
-                                </p>
-                            </section>
-                        </div>
-                    </motion.div>
-                </div>
             </div>
-        </OrbBackground>
+        </div>
     );
 }

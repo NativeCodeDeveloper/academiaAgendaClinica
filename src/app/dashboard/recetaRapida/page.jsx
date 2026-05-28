@@ -1,10 +1,6 @@
 "use client";
 
-import OrbBackground from "@/components/OrbBackground";
-import { Michroma } from "next/font/google";
 import { motion } from "framer-motion";
-
-const michroma = Michroma({ weight: "400", subsets: ["latin"], display: "swap" });
 
 const fadeUp = {
     hidden: { opacity: 0, y: 24 },
@@ -19,110 +15,98 @@ const YOUTUBE_URL = "https://youtu.be/eZhpFPow0MA";
 
 export default function CapsulaRecetaRapida() {
     return (
-        <OrbBackground orbX={0.75} orbY={0.50}>
-            <div className="min-h-screen px-4 py-6 sm:px-6 lg:px-8">
-                <div className="mx-auto max-w-4xl">
-                    <motion.div variants={fadeUp} initial="hidden" animate="visible" custom={0} className="mb-6 flex items-center gap-2">
-                        <p className={michroma.className + " text-[13px] bg-gradient-to-r from-cyan-700 via-cyan-600 to-indigo-700 bg-clip-text text-transparent"}>AgendaClinica</p>
-                        <span className="text-[10px] uppercase tracking-[0.22em] text-slate-400">/ Academia</span>
-                    </motion.div>
+        <div className="min-h-screen bg-[#F5F5F7] px-4 py-10 sm:px-6 lg:px-8">
+            <div className="mx-auto max-w-4xl">
 
-                    <motion.div variants={fadeUp} initial="hidden" animate="visible" custom={1}>
-                        <div className="mb-4 inline-flex items-center rounded-full border border-cyan-100 bg-white/85 px-3 py-1.5 text-[10px] font-semibold uppercase tracking-[0.22em] text-cyan-700 shadow-sm">
-                            Capsula
+                <motion.div variants={fadeUp} initial="hidden" animate="visible" custom={0} className="mb-8 flex items-center gap-1.5">
+                    <span className="text-[13px] font-semibold text-[#1D1D1F]">AgendaClinica</span>
+                    <span className="text-[#D2D2D7]">/</span>
+                    <span className="text-[13px] text-[#6E6E73]">Academia</span>
+                </motion.div>
+
+                <motion.div variants={fadeUp} initial="hidden" animate="visible" custom={1} className="mb-8">
+                    <span className="mb-4 inline-block rounded-full border border-[#D2D2D7] bg-white px-3 py-1 text-[11px] font-medium uppercase tracking-[0.14em] text-[#6E6E73] shadow-sm">
+                        Cápsula
+                    </span>
+                    <h1 className="text-[1.75rem] font-semibold leading-[1.05] tracking-tight text-[#1D1D1F] sm:text-[2.25rem] lg:text-[2.75rem]">
+                        Receta Rápida
+                    </h1>
+                </motion.div>
+
+                <motion.div variants={fadeUp} initial="hidden" animate="visible" custom={2} className="mb-6">
+                    <div className="overflow-hidden rounded-2xl border border-[#D2D2D7] bg-white shadow-sm">
+                        <div className="aspect-video w-full">
+                            <iframe
+                                className="h-full w-full"
+                                src={YOUTUBE_URL.replace("youtu.be/", "youtube.com/embed/")}
+                                title="Cápsula — Receta Rápida"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                allowFullScreen
+                            />
                         </div>
-                        <h1 className={michroma.className + " text-[1.5rem] leading-[1.08] sm:text-[2rem] lg:text-[2.4rem]"}>
-                            <span className="bg-gradient-to-r from-cyan-600 via-sky-500 to-indigo-600 bg-clip-text text-transparent">Receta Rapida</span>
-                        </h1>
-                    </motion.div>
+                    </div>
+                </motion.div>
 
-                    <motion.div variants={fadeUp} initial="hidden" animate="visible" custom={2} className="mt-8">
-                        <div className="overflow-hidden rounded-[1.75rem] border border-white/70 bg-white/88 shadow-[0_28px_80px_rgba(15,23,42,0.12)] backdrop-blur-xl">
-                            <div className="aspect-video w-full">
-                                <iframe
-                                    className="h-full w-full"
-                                    src={YOUTUBE_URL.includes("youtu.be/") ? YOUTUBE_URL.replace("youtu.be/", "youtube.com/embed/") : YOUTUBE_URL.replace("watch?v=", "embed/")}
-                                    title="Capsula - Receta Rapida"
-                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                                    allowFullScreen
-                                />
+                <motion.div variants={fadeUp} initial="hidden" animate="visible" custom={2.5} className="mb-6">
+                    <div className="rounded-2xl border border-[#D2D2D7] bg-white p-6 shadow-sm sm:p-8">
+                        <p className="mb-3 text-[11px] font-semibold uppercase tracking-[0.16em] text-[#6E6E73]">
+                            Descripción
+                        </p>
+                        <p className="text-[15px] leading-relaxed text-[#1D1D1F]">
+                            Descubre cómo generar una receta rápida en AgendaClinica y agiliza tus atenciones clínicas evitando retrasos durante la consulta.
+                        </p>
+
+                        <p className="mb-3 mt-6 text-[11px] font-semibold uppercase tracking-[0.16em] text-[#6E6E73]">
+                            En esta cápsula aprenderás
+                        </p>
+                        <ul className="ml-4 space-y-1.5 list-disc text-[15px] leading-relaxed text-[#6E6E73]">
+                            <li>Cómo acceder al módulo de receta rápida</li>
+                            <li>Cómo completar los datos de una receta médica</li>
+                            <li>Cómo generar el documento en PDF</li>
+                            <li>Cómo entregar rápidamente una receta al paciente</li>
+                            <li>Cómo optimizar el flujo de atención clínica diaria</li>
+                        </ul>
+                        <p className="mt-4 text-[15px] leading-relaxed text-[#6E6E73]">
+                            Este módulo está pensado para entregar una solución rápida y práctica durante las atenciones médicas.
+                        </p>
+                    </div>
+                </motion.div>
+
+                <motion.div variants={fadeUp} initial="hidden" animate="visible" custom={3}>
+                    <div className="rounded-2xl border border-[#D2D2D7] bg-white p-6 shadow-sm sm:p-8">
+                        <p className="mb-5 text-[11px] font-semibold uppercase tracking-[0.16em] text-[#6E6E73]">
+                            Preguntas Frecuentes
+                        </p>
+
+                        <div className="space-y-3">
+                            <div className="rounded-xl border border-[#E8E8ED] bg-[#F5F5F7] p-4">
+                                <p className="text-[13px] font-semibold text-[#1D1D1F]">¿La receta rápida se puede enviar por correo electrónico?</p>
+                                <p className="mt-1.5 text-[13px] text-[#6E6E73]">No. Actualmente la receta rápida solamente permite descargar el documento en formato PDF.</p>
+                            </div>
+
+                            <div className="rounded-xl border border-[#E8E8ED] bg-[#F5F5F7] p-4">
+                                <p className="text-[13px] font-semibold text-[#1D1D1F]">¿La receta puede mostrar el logo de mi consulta o centro médico?</p>
+                                <p className="mt-1.5 text-[13px] text-[#6E6E73]">No actualmente. La receta rápida únicamente mostrará el nombre del centro médico configurado. En caso contrario, aparecerá el nombre de AgendaClinica.</p>
+                            </div>
+
+                            <div className="rounded-xl border border-[#E8E8ED] bg-[#F5F5F7] p-4">
+                                <p className="text-[13px] font-semibold text-[#1D1D1F]">¿Puedo modificar elementos del formulario de receta rápida?</p>
+                                <p className="mt-1.5 text-[13px] text-[#6E6E73]">No es posible realizar modificaciones directas sobre este formulario. En caso de necesitar personalizaciones específicas, puede solicitar una cotización de desarrollo a medida mediante los canales de contacto oficiales de AgendaClinica.</p>
+                            </div>
+
+                            <div className="rounded-xl border border-[#E8E8ED] bg-[#F5F5F7] p-4">
+                                <p className="text-[13px] font-semibold text-[#1D1D1F]">¿La receta queda guardada automáticamente en el sistema?</p>
+                                <p className="mt-1.5 text-[13px] text-[#6E6E73]">La receta rápida no queda almacenada automáticamente. Para que quede registrada en el historial clínico del paciente, debe realizarse desde la carpeta clínica o historial del paciente correspondiente.</p>
                             </div>
                         </div>
-                    </motion.div>
 
-                    <motion.div variants={fadeUp} initial="hidden" animate="visible" custom={2.5} className="mt-6">
-                        <div className="space-y-7 rounded-[1.75rem] border border-white/70 bg-white/88 p-6 shadow-[0_28px_80px_rgba(15,23,42,0.12)] backdrop-blur-xl sm:p-8">
-                            <section>
-                                <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-cyan-700">Descripcion</p>
-                                <p className="mt-3 text-[14px] leading-relaxed text-slate-600">
-                                    Descubra como generar una receta rapida en AgendaClinica y agilice sus atenciones clinicas evitando retrasos durante la consulta.
-                                </p>
-                            </section>
+                        <p className="mt-6 text-[14px] leading-relaxed text-[#6E6E73]">
+                            Usa receta rápida cuando necesites emitir un PDF en pocos pasos durante una atención, y registra desde la ficha clínica cuando requieras dejar historial asociado al paciente.
+                        </p>
+                    </div>
+                </motion.div>
 
-                            <section>
-                                <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-cyan-700">En esta capsula aprendera</p>
-                                <ul className="mt-3 space-y-2 text-[14px] leading-relaxed text-slate-600">
-                                    <li>Como acceder al modulo de receta rapida</li>
-                                    <li>Como completar los datos de una receta medica</li>
-                                    <li>Como generar el documento en PDF</li>
-                                    <li>Como entregar rapidamente una receta al paciente</li>
-                                    <li>Como optimizar el flujo de atencion clinica diaria</li>
-                                </ul>
-                                <p className="mt-4 text-[14px] leading-relaxed text-slate-600">
-                                    Este modulo esta pensado para entregar una solucion rapida y practica durante las atenciones medicas.
-                                </p>
-                            </section>
-
-                            <section>
-                                <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-cyan-700">Preguntas frecuentes</p>
-
-                                <div className="mt-4 space-y-5 text-[14px] leading-relaxed text-slate-600">
-                                    <div>
-                                        <h2 className="text-[15px] font-semibold text-slate-800">¿La receta rapida se puede enviar por correo electronico?</h2>
-                                        <p className="mt-2">
-                                            No. Actualmente la receta rapida solamente permite descargar el documento en formato PDF.
-                                        </p>
-                                    </div>
-
-                                    <div>
-                                        <h2 className="text-[15px] font-semibold text-slate-800">¿La receta puede mostrar el logo de mi consulta o centro medico?</h2>
-                                        <p className="mt-2">
-                                            No actualmente. La receta rapida unicamente mostrara el nombre del centro medico configurado. En caso contrario, aparecera el nombre de AgendaClinica.
-                                        </p>
-                                    </div>
-
-                                    <div>
-                                        <h2 className="text-[15px] font-semibold text-slate-800">¿Puedo modificar elementos del formulario de receta rapida?</h2>
-                                        <p className="mt-2">
-                                            No es posible realizar modificaciones directas sobre este formulario.
-                                        </p>
-                                        <p className="mt-2">
-                                            En caso de necesitar personalizaciones especificas, puede solicitar una cotizacion de desarrollo a medida mediante los canales de contacto oficiales de AgendaClinica.
-                                        </p>
-                                    </div>
-
-                                    <div>
-                                        <h2 className="text-[15px] font-semibold text-slate-800">¿La receta queda guardada automaticamente en el sistema?</h2>
-                                        <p className="mt-2">
-                                            La receta rapida no queda almacenada automaticamente.
-                                        </p>
-                                        <p className="mt-2">
-                                            Para que quede registrada en el historial clinico del paciente, debe realizarse desde la carpeta clinica o historial del paciente correspondiente.
-                                        </p>
-                                    </div>
-                                </div>
-                            </section>
-
-                            <section className="rounded-2xl border border-cyan-100 bg-cyan-50/70 p-4">
-                                <p className="text-[13px] font-semibold text-cyan-800">Recomendacion</p>
-                                <p className="mt-2 text-[14px] leading-relaxed text-slate-600">
-                                    Use receta rapida cuando necesite emitir un PDF en pocos pasos durante una atencion, y registre desde la ficha clinica cuando requiera dejar historial asociado al paciente.
-                                </p>
-                            </section>
-                        </div>
-                    </motion.div>
-                </div>
             </div>
-        </OrbBackground>
+        </div>
     );
 }
