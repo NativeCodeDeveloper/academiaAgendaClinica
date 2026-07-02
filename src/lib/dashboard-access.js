@@ -7,6 +7,7 @@ export const DASHBOARD_NAV_SECTIONS = [
       { href: "/dashboard/principal", label: "Principal" },
       { href: "/dashboard/moduloAgenda", label: "Agenda" },
       { href: "/dashboard/bloqueos", label: "Bloqueo de Agenda" },
+      { href: "/dashboard/nuevaSeccionBloqueos", label: "Nueva Sección Bloqueos" },
       { href: "/dashboard/horasPaginaWeb", label: "Horas en Página Web" },
       { href: "/dashboard/editarPaciente", label: "Editar Paciente" },
       { href: "/dashboard/moduloFichaClinica", label: "Completado de Fichas Clínicas" },
