@@ -1,160 +1,142 @@
 "use client";
 
-import { motion } from "framer-motion";
-import { ArrowRight, BookOpen, LayoutGrid, PlayCircle, RefreshCw } from "lucide-react";
+// ── Inicio del dashboard ─────────────────────────────────────────────────────
+// La bienvenida ya la da la portada (src/app/page.jsx), asi que aca se quito:
+// antes esta pantalla abria con "Bienvenidos a la Academia AgendaClinica" y un
+// parrafo explicando que es la Academia — lo mismo, dicho dos veces seguidas.
+// Lo que queda es lo unico que esta pantalla tiene que resolver: decir donde
+// esta el usuario y como llegar a una capsula.
+//
+// Mismo lenguaje visual que las lecciones (#F5F5F7 de fondo, tinta #1D1D1F,
+// tarjetas blancas con borde hairline), para que entrar a una capsula no se
+// sienta como cambiar de sitio.
+//
+// Sin alto fijo: la version anterior encerraba todo en lg:h-screen con
+// overflow-hidden, asi que en un monitor bajo o con el zoom del navegador
+// arriba, la captura quedaba cortada sin forma de llegar a ella. Ahora fluye y
+// el contenedor del layout es el que hace scroll.
 
-const fadeUp = {
-    hidden: { opacity: 0, y: -20, filter: "blur(10px)" },
+import { motion } from "framer-motion";
+import { LayoutGrid, PlayCircle, RefreshCw, ShieldCheck } from "lucide-react";
+
+const aparicion = {
+    hidden: { opacity: 0, y: 16 },
     visible: (i = 0) => ({
         opacity: 1,
         y: 0,
-        filter: "blur(0px)",
-        transition: { delay: i * 0.15, duration: 0.5 },
+        transition: { delay: i * 0.08, duration: 0.6, ease: [0.22, 1, 0.36, 1] },
     }),
 };
 
-const features = [
+const caracteristicas = [
     {
         icon: PlayCircle,
-        title: "Video cápsulas por módulo",
-        description: "Aprende paso a paso cómo usar cada funcionalidad con videos guiados.",
+        titulo: "Una cápsula por módulo",
+        detalle: "Cada video recorre el módulo completo, paso a paso.",
     },
     {
         icon: LayoutGrid,
-        title: "Cubre todos los módulos",
-        description: "Agenda, Fichas Clínicas, Odontograma, Pacientes y más.",
+        titulo: "Todo el sistema",
+        detalle: "Agenda, fichas, odontograma, recetas y presupuestos.",
     },
     {
         icon: RefreshCw,
-        title: "Contenido actualizado",
-        description: "Se agregan nuevas cápsulas cada vez que el sistema evoluciona.",
+        titulo: "Al día",
+        detalle: "Se suma una cápsula cada vez que el sistema cambia.",
     },
     {
-        icon: BookOpen,
-        title: "Guía oficial del sistema",
-        description: "Material creado directamente por el equipo de AgendaClinica.",
+        icon: ShieldCheck,
+        titulo: "Material oficial",
+        detalle: "Producido por el equipo de AgendaClinica.",
     },
 ];
 
-export default function AcademiaBienvenida() {
+export default function InicioAcademia() {
+    // El contenedor no lleva fondo propio: el gris, los degradados y el grano
+    // son del layout. Pintarlos de nuevo aca tapaba el degradado y dejaba una
+    // costura visible justo donde termina el contenido — se notaba en tablet,
+    // donde la pagina es mas corta que la pantalla.
     return (
-        <div className="relative min-h-screen bg-black lg:h-screen lg:overflow-hidden">
+        <div className="px-4 py-8 sm:px-6 sm:py-10 lg:px-8">
+            <div className="mx-auto max-w-5xl">
 
-            {/* Gradient orbs — top right */}
-            <div className="absolute -right-60 -top-10 z-0 flex flex-col items-end blur-xl">
-                <div className="h-40 w-240 rounded-full bg-linear-to-b from-purple-600 to-sky-600 blur-[6rem]" />
-                <div className="h-40 w-360 rounded-full bg-linear-to-b from-pink-900 to-yellow-400 blur-[6rem]" />
-                <div className="h-40 w-240 rounded-full bg-linear-to-b from-yellow-600 to-sky-500 blur-[6rem]" />
-            </div>
-            {/* Ambient orb — bottom left, cubre el vacío negro cerca de la imagen */}
-            <div className="absolute -bottom-20 -left-20 z-0 h-96 w-96 rounded-full bg-linear-to-tr from-violet-900/70 to-indigo-900/50 blur-[8rem]" />
+                {/* Misma miga de pan que abre cada capsula. */}
+                <motion.div
+                    variants={aparicion}
+                    initial="hidden"
+                    animate="visible"
+                    custom={0}
+                    className="mb-6 flex items-center gap-1.5"
+                >
+                    <span className="text-[13px] font-semibold text-[#1D1D1F]">AgendaClinica</span>
+                    <span className="text-[#D2D2D7]">/</span>
+                    <span className="text-[13px] text-[#6E6E73]">Academia</span>
+                </motion.div>
 
-            {/* Grain texture */}
-            <div className="absolute inset-0 z-0 bg-noise opacity-30" />
+                <motion.h1
+                    variants={aparicion}
+                    initial="hidden"
+                    animate="visible"
+                    custom={1}
+                    className="max-w-2xl text-[1.75rem] font-semibold leading-[1.05] tracking-tight text-[#1D1D1F] sm:text-[2.25rem] lg:text-[2.75rem]"
+                >
+                    Todo lo que necesitas para dominar AgendaClinica
+                </motion.h1>
 
-            {/* Content */}
-            <div className="relative z-10 flex flex-col px-4 pb-10 pt-8 sm:px-6 lg:h-full lg:pb-0 lg:px-6 lg:pt-6 xl:px-8 xl:pt-8">
-                <div className="mx-auto flex w-full max-w-5xl flex-1 flex-col xl:max-w-6xl">
+                <motion.p
+                    variants={aparicion}
+                    initial="hidden"
+                    animate="visible"
+                    custom={2}
+                    className="mt-4 max-w-xl text-[15px] leading-relaxed text-[#6E6E73]"
+                >
+                    Elige un módulo en el menú lateral y entra a su cápsula cuando la necesites.
+                </motion.p>
 
-                    {/* Badge */}
-                    <motion.div
-                        variants={fadeUp}
-                        initial="hidden"
-                        animate="visible"
-                        custom={0}
-                        className="mb-4 flex w-fit items-center gap-2 rounded-full bg-white/10 px-4 py-2 backdrop-blur-sm lg:mb-5 xl:mb-6"
-                    >
-                        <span className="text-sm font-medium text-white">
-                            Cápsulas de entrenamiento disponibles
-                        </span>
-                        <ArrowRight className="h-4 w-4 text-white" strokeWidth={2} />
-                    </motion.div>
+                {/* Una sola columna en telefono: en dos, cada tarjeta quedaba
+                    con el titulo partido en tres lineas. */}
+                <div className="mt-8 grid grid-cols-1 gap-3 sm:grid-cols-2 lg:mt-10 lg:grid-cols-4">
+                    {caracteristicas.map((item, i) => (
+                        <motion.div
+                            key={item.titulo}
+                            variants={aparicion}
+                            initial="hidden"
+                            animate="visible"
+                            custom={i + 3}
+                            className="rounded-2xl border border-[#E8E8ED] bg-white p-4 shadow-[0_1px_2px_rgba(15,23,42,0.04)]"
+                        >
+                            <div className="flex h-8 w-8 items-center justify-center rounded-xl bg-[#F5F5F7]">
+                                <item.icon className="h-4 w-4 text-[#1D1D1F]" strokeWidth={1.75} />
+                            </div>
+                            <p className="mt-3 text-[13px] font-semibold leading-snug text-[#1D1D1F]">
+                                {item.titulo}
+                            </p>
+                            <p className="mt-1 text-[12px] leading-snug text-[#86868B]">
+                                {item.detalle}
+                            </p>
+                        </motion.div>
+                    ))}
+                </div>
 
-                    {/* Two-column on desktop, stacked on mobile */}
-                    <div className="flex flex-col gap-6 pb-4 lg:flex-row lg:items-start lg:gap-6 lg:pb-4 xl:gap-10 xl:pb-5">
-
-                        {/* Left — title + subtitle */}
-                        <div className="flex-1 space-y-3 lg:space-y-4 xl:space-y-5">
-                            <motion.p
-                                variants={fadeUp}
-                                initial="hidden"
-                                animate="visible"
-                                custom={1}
-                                className="text-[13px] font-semibold uppercase tracking-[0.14em] text-amber-300"
-                            >
-                                Bienvenidos a la Academia AgendaClinica
-                            </motion.p>
-
-                            <motion.h1
-                                variants={fadeUp}
-                                initial="hidden"
-                                animate="visible"
-                                custom={2}
-                                className="text-3xl font-bold leading-tight text-white sm:text-4xl lg:text-[2.5rem] xl:text-[3.25rem]"
-                            >
-                                Todo lo que necesitas para dominar AgendaClinica
-                            </motion.h1>
-
-                            <motion.div
-                                variants={fadeUp}
-                                initial="hidden"
-                                animate="visible"
-                                custom={3}
-                                className="rounded-2xl border border-white/20 bg-white/15 p-4 backdrop-blur-sm lg:max-w-sm xl:max-w-md xl:p-5"
-                            >
-                                <p className="text-justify text-sm leading-relaxed text-gray-300 xl:text-base">
-                                    Esta plataforma es tu guía oficial para aprender a usar el sistema. Navega por los módulos del menú lateral y accede a cada cápsula cuando lo necesites.
-                                </p>
-                            </motion.div>
-                        </div>
-
-                        {/* Right — 2-col grid on mobile, stacked on desktop */}
-                        <div className="grid grid-cols-2 gap-3 lg:block lg:w-60 lg:shrink-0 lg:space-y-2.5 xl:w-72 xl:space-y-3">
-                            {features.map((f, i) => (
-                                <motion.div
-                                    key={f.title}
-                                    variants={fadeUp}
-                                    initial="hidden"
-                                    animate="visible"
-                                    custom={i + 4}
-                                    className="flex items-start gap-3 rounded-2xl border border-white/20 bg-white/15 p-3 backdrop-blur-sm xl:p-4"
-                                >
-                                    <div className="flex h-7 w-7 shrink-0 items-center justify-center rounded-xl bg-white/10 xl:h-8 xl:w-8">
-                                        <f.icon className="h-4 w-4 text-white" strokeWidth={1.75} />
-                                    </div>
-                                    <div>
-                                        <p className="text-[12px] font-semibold leading-snug text-white xl:text-[13px]">
-                                            {f.title}
-                                        </p>
-                                        <p className="mt-0.5 text-[11px] leading-snug text-white/50">
-                                            {f.description}
-                                        </p>
-                                    </div>
-                                </motion.div>
-                            ))}
-                        </div>
-
-                    </div>
-
-                    {/* Hero image — fixed height on mobile, fills remaining on desktop */}
-                    <motion.div
-                        variants={fadeUp}
-                        initial="hidden"
-                        animate="visible"
-                        custom={8}
-                        className="relative hidden overflow-hidden rounded-2xl sm:block sm:aspect-video lg:aspect-auto lg:min-h-0 lg:flex-1"
-                    >
+                <motion.div
+                    variants={aparicion}
+                    initial="hidden"
+                    animate="visible"
+                    custom={7}
+                    className="mt-8 overflow-hidden rounded-2xl border border-[#E8E8ED] bg-white shadow-[0_1px_2px_rgba(15,23,42,0.04),0_24px_50px_-30px_rgba(15,23,42,0.30)] lg:mt-10"
+                >
+                    {/* Proporcion fija: sin ella la altura dependia de la imagen
+                        y el bloque daba un salto al terminar de cargar. */}
+                    <div className="aspect-[16/9] w-full sm:aspect-[21/9]">
                         <img
                             src="/capturaac.png"
-                            alt="AgendaClinica"
+                            alt="Vista del sistema AgendaClinica"
                             className="h-full w-full object-cover object-top"
                         />
-                        <div className="absolute inset-0 bg-linear-to-t from-black/60 via-black/10 to-transparent" />
-                    </motion.div>
+                    </div>
+                </motion.div>
 
-                </div>
             </div>
-
         </div>
     );
 }

@@ -13,6 +13,11 @@ const ALLOWED_PREFIXES = [
 export function middleware(request) {
     const { pathname } = request.nextUrl;
 
+    // La raiz es la portada de bienvenida. Se compara exacta y no por prefijo:
+    // "/" es prefijo de todo, asi que en ALLOWED_PREFIXES habria dejado pasar
+    // cualquier ruta.
+    if (pathname === "/") return NextResponse.next();
+
     const isAllowed = ALLOWED_PREFIXES.some((prefix) => pathname.startsWith(prefix));
 
     if (!isAllowed) {
