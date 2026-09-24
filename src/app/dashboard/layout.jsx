@@ -1,3 +1,4 @@
+import FondoAcademia from "@/Componentes/FondoAcademia";
 import MobileNav from "./MobileNav";
 import SidebarLinks from "./SidebarLinks";
 import { getDashboardSectionsForRole } from "@/lib/dashboard-access";
@@ -19,32 +20,13 @@ export default async function DashboardLayout({ children }) {
     return (
         <div className="relative h-screen w-full overflow-hidden bg-[#F5F5F7]">
 
-            {/* Fondo de la Academia: el mismo gris de las capsulas (#F5F5F7).
-                Antes era negro con orbes de color (morado, rosa, amarillo)
-                difuminados. Eso obligaba a que cada pantalla decidiera su
-                propio fondo, y no calzaba con las lecciones, que siempre
-                fueron claras: al pasar de una a otra la vista saltaba de oscuro
-                a claro. Ahora el gris es unico para todo el dashboard y el
-                sidebar oscuro flota encima, que es de donde sale el contraste.
-
-                Los degradados se mantienen, en version clara: los mismos tres
-                arriba a la derecha y el de abajo a la izquierda, pero en tonos
-                pastel y con poca opacidad. En su version saturada sobre negro
-                pintaban la pantalla; sobre el gris claro tienen que leerse como
-                un tinte, no como un color — si se notan al mirarlos de frente,
-                estan de mas.
-
-                El grano se mantiene, pero al 12% y no al 30%: la textura es
-                ruido oscuro, y la misma carga que sobre negro se veia como
-                arena, sobre gris claro se ve como una pantalla sucia. Al 12%
-                se nota el grano sin ensuciar el gris. */}
-            <div className="pointer-events-none absolute -right-60 -top-10 z-0 flex flex-col items-end blur-xl">
-                <div className="h-40 w-240 rounded-full bg-linear-to-b from-violet-300/45 to-sky-300/45 blur-[6rem]" />
-                <div className="h-40 w-360 rounded-full bg-linear-to-b from-rose-200/45 to-amber-200/45 blur-[6rem]" />
-                <div className="h-40 w-240 rounded-full bg-linear-to-b from-amber-200/40 to-sky-200/45 blur-[6rem]" />
-            </div>
-            <div className="pointer-events-none absolute -bottom-20 -left-20 z-0 h-96 w-96 rounded-full bg-linear-to-tr from-violet-300/40 to-indigo-200/35 blur-[8rem]" />
-            <div className="pointer-events-none absolute inset-0 z-0 bg-noise opacity-[0.12]" />
+            {/* El fondo de la Academia es el gris de las capsulas (#F5F5F7)
+                mas las manchas de color y el grano, que son comunes con la
+                portada y viven en src/Componentes/FondoAcademia.jsx. Antes
+                todo esto era negro, y no calzaba con las lecciones: al pasar
+                de una a otra la vista saltaba de oscuro a claro. El sidebar
+                oscuro flota encima, que es de donde sale el contraste. */}
+            <FondoAcademia />
 
             <div className="relative z-10 flex h-full w-full">
 

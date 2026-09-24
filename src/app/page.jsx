@@ -10,15 +10,26 @@
 // botón de WhatsApp, que le quitarían el aire a una portada a pantalla
 // completa.
 //
-// Fondo claro, como el componente original. El interior del dashboard es
-// oscuro: el contraste marca la entrada.
+// Fondo blanco, como el componente original, con el mismo tratamiento que el
+// dashboard encima: los degradados de marca (morado y cian) muy abiertos y la
+// capa de grano. Sin eso la portada quedaba en blanco plano y el dashboard
+// tenia color, asi que al entrar cambiaba el material de la pagina, no solo el
+// contenido.
 
 import AnimatedMarqueeHero from "@/Componentes/AnimatedMarqueeHero";
+import FondoAcademia from "@/Componentes/FondoAcademia";
 import { capsulas } from "@/lib/capsulas";
 
 export default function PortadaAcademia() {
   return (
     <div className="relative min-h-screen overflow-hidden bg-white">
+
+      <FondoAcademia tenue />
+
+      {/* z-10 propio: la portada tiene su carrusel en z-0 y el texto en z-10.
+          Sin este contenedor esos niveles conviven con los del fondo y el
+          carrusel termina por debajo del degradado. */}
+      <div className="relative z-10">
       <AnimatedMarqueeHero
         tagline="Estimado usuario"
         title="Bienvenido a la Academia de Agenda Clínica"
@@ -27,6 +38,7 @@ export default function PortadaAcademia() {
         ctaHref="/dashboard"
         videos={capsulas}
       />
+      </div>
     </div>
   );
 }

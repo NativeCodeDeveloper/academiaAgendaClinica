@@ -7,9 +7,11 @@
 // Lo que queda es lo unico que esta pantalla tiene que resolver: decir donde
 // esta el usuario y como llegar a una capsula.
 //
-// Mismo lenguaje visual que las lecciones (#F5F5F7 de fondo, tinta #1D1D1F,
-// tarjetas blancas con borde hairline), para que entrar a una capsula no se
-// sienta como cambiar de sitio.
+// La tinta que flota sobre el degradado va mas oscura que en las lecciones:
+// el gris secundario de alla (#6E6E73) vive sobre gris claro plano, y sobre el
+// color da 2.05:1 — la mitad del minimo legible. #333336 llega a 4.5:1 en la
+// zona mas oscura del degradado. Dentro de las tarjetas, que son blancas, la
+// tinta sigue siendo la de siempre.
 //
 // Sin alto fijo: la version anterior encerraba todo en lg:h-screen con
 // overflow-hidden, asi que en un monitor bajo o con el zoom del navegador
@@ -70,7 +72,7 @@ export default function InicioAcademia() {
                 >
                     <span className="text-[13px] font-semibold text-[#1D1D1F]">AgendaClinica</span>
                     <span className="text-[#D2D2D7]">/</span>
-                    <span className="text-[13px] text-[#6E6E73]">Academia</span>
+                    <span className="text-[13px] text-[#333336]">Academia</span>
                 </motion.div>
 
                 <motion.h1
@@ -88,7 +90,7 @@ export default function InicioAcademia() {
                     initial="hidden"
                     animate="visible"
                     custom={2}
-                    className="mt-4 max-w-xl text-[15px] leading-relaxed text-[#6E6E73]"
+                    className="mt-4 max-w-xl text-[15px] leading-relaxed text-[#333336]"
                 >
                     Elige un módulo en el menú lateral y entra a su cápsula cuando la necesites.
                 </motion.p>
@@ -125,13 +127,17 @@ export default function InicioAcademia() {
                     custom={7}
                     className="mt-8 overflow-hidden rounded-2xl border border-[#E8E8ED] bg-white shadow-[0_1px_2px_rgba(15,23,42,0.04),0_24px_50px_-30px_rgba(15,23,42,0.30)] lg:mt-10"
                 >
-                    {/* Proporcion fija: sin ella la altura dependia de la imagen
-                        y el bloque daba un salto al terminar de cargar. */}
-                    <div className="aspect-[16/9] w-full sm:aspect-[21/9]">
+                    {/* La proporcion del contenedor es la de la imagen
+                        (2312x914), asi que se ve completa: no hay recorte ni
+                        acercamiento. Antes iba forzada a 21:9 con object-cover,
+                        que la ampliaba y se comia los bordes. Fijarla igual, en
+                        vez de dejar la altura al aire, evita el salto del bloque
+                        mientras la imagen carga. */}
+                    <div className="aspect-[2312/914] w-full">
                         <img
-                            src="/capturaac.png"
-                            alt="Vista del sistema AgendaClinica"
-                            className="h-full w-full object-cover object-top"
+                            src="/captura-inicio.png"
+                            alt="Panel de citas de AgendaClinica"
+                            className="h-full w-full object-cover"
                         />
                     </div>
                 </motion.div>

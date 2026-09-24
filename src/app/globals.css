@@ -174,6 +174,43 @@ html {
   }
 }
 
+/* Cinta de capsulas de la portada.
+
+   Va en CSS y no en JS a proposito: el navegador la corre en el compositor, asi
+   que no se traba si el hilo principal esta ocupado (hidratacion, imagenes
+   cargando), y pausarla no reinicia la posicion como pasaba al quitarle el
+   animate a framer-motion.
+
+   El recorrido es exactamente -50% de una lista duplicada, que es una vuelta
+   completa del patron. Para que calce, la separacion entre tarjetas va como
+   margen de cada una y no como gap del contenedor: con gap, N tarjetas tienen
+   N-1 espacios, el -50% se desfasa medio espacio y la cinta pega un salto en
+   cada vuelta. */
+/* El canvas del fondo aparece con una transicion: al montarse de golpe sobre el
+   degradado CSS se notaba el relevo entre las dos capas. */
+@keyframes aparecer-fondo {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes desplazar-cinta {
+  from { transform: translate3d(0, 0, 0); }
+  to   { transform: translate3d(-50%, 0, 0); }
+}
+
+.cinta-capsulas {
+  animation: desplazar-cinta 95s linear infinite;
+  will-change: transform;
+}
+
+/* Solo se pausa donde hay un cursor de verdad. En pantallas tactiles el hover
+   se queda pegado tras el primer toque y la cinta no volvia a arrancar. */
+@media (hover: hover) and (pointer: fine) {
+  .cinta-capsulas:hover {
+    animation-play-state: paused;
+  }
+}
+
 @keyframes reveal-up {
   from {
     opacity: 0;

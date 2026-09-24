@@ -15,10 +15,11 @@
 //    tiene, se cae a hqdefault.
 //  · El carrusel avanza lento a propósito (95 s por vuelta). A la velocidad
 //    original se leía como un banner publicitario; lento se percibe calmado.
-//    Se detiene al pasar el mouse y respeta "reducir movimiento".
+//    Se detiene al pasar el mouse. La animación vive en globals.css
+//    (.cinta-capsulas): ahí está explicado por qué no va en JS.
 
 import { useState } from "react";
-import { motion, useReducedMotion } from "framer-motion";
+import { motion } from "framer-motion";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
 
@@ -60,9 +61,6 @@ export default function AnimatedMarqueeHero({
   videos = [],
   className,
 }) {
-  const sinMovimiento = useReducedMotion();
-  const [pausado, setPausado] = useState(false);
-
   // Se duplican para que el recorrido cierre sin salto visible.
   const secuencia = [...videos, ...videos];
 
@@ -75,23 +73,17 @@ export default function AnimatedMarqueeHero({
     >
       {/* Carrusel al fondo. Va detrás del contenido a propósito: el botón queda
           encima de las tarjetas, que es lo que le da profundidad a la portada. */}
-      <div
-        onMouseEnter={() => setPausado(true)}
-        onMouseLeave={() => setPausado(false)}
-        className="absolute inset-x-0 bottom-0 z-0 h-[42%] [mask-image:linear-gradient(to_bottom,transparent,black_20%,black_92%,transparent)] md:h-[44%]"
-      >
-        <motion.div
-          className="flex h-full items-center gap-2"
+      <div className="absolute inset-x-0 bottom-0 z-0 h-[42%] [mask-image:linear-gradient(to_bottom,transparent,black_20%,black_92%,transparent)] md:h-[44%]">
+        <div
+          className="cinta-capsulas flex h-full items-center"
           style={{ width: "max-content" }}
-          animate={sinMovimiento || pausado ? undefined : { x: ["0%", "-50%"] }}
-          transition={sinMovimiento ? undefined : { ease: "linear", duration: 95, repeat: Infinity }}
         >
           {secuencia.map((video, index) => (
             <figure
               key={`${video.id}-${index}`}
               // ring-1 por dentro además del borde: separa la captura del
               // fondo oscuro sin dibujar una línea dura.
-              className="group relative aspect-[5/3] h-[70%] flex-shrink-0 overflow-hidden rounded-[18px] border border-black/[0.06] shadow-[0_2px_4px_rgba(15,23,42,0.04),0_24px_50px_-26px_rgba(15,23,42,0.45)] md:h-[76%]"
+              className="group relative mr-2 aspect-[5/3] h-[70%] flex-shrink-0 overflow-hidden rounded-[18px] border border-black/[0.06] shadow-[0_2px_4px_rgba(15,23,42,0.04),0_24px_50px_-26px_rgba(15,23,42,0.45)] md:h-[76%]"
               style={{ rotate: `${index % 2 === 0 ? -1.5 : 1.8}deg` }}
             >
               {/* Solo la captura: sin velo oscuro, sin título encima y sin
@@ -100,7 +92,7 @@ export default function AnimatedMarqueeHero({
               <Miniatura id={video.id} titulo={video.titulo} />
             </figure>
           ))}
-        </motion.div>
+        </div>
       </div>
 
       {/* Contenido. z-10 para quedar sobre el carrusel. */}
@@ -136,7 +128,7 @@ export default function AnimatedMarqueeHero({
           animate="show"
           variants={APARICION}
           transition={{ delay: 0.5 }}
-          className="mt-6 max-w-2xl text-pretty text-[15px] leading-relaxed text-[#6E6E73] md:text-lg"
+          className="mt-6 max-w-2xl text-pretty text-[15px] leading-relaxed text-[#333336] md:text-lg"
         >
           {description}
         </motion.p>

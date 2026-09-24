@@ -52,8 +52,13 @@ export default function MobileNav({ role }) {
             <div className="border-b border-[#E8E8ED] bg-white/95 backdrop-blur-xl">
                 <div className="flex items-center justify-between px-4 py-3">
                     <div className="flex items-center gap-3">
-                        <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl border border-[#E8E8ED] bg-white">
-                            <img src="/logo.png" alt="AgendaClinica" className="h-6 w-6 object-contain" />
+                        {/* Placa oscura con la marca en blanco, igual que la
+                            tarjeta del sidebar en escritorio. Antes era
+                            /logo.png sobre blanco: un PNG de 2,2 MB con fondo
+                            claro reducido a 24px, que se leia deslavado y
+                            ademas era el logo antiguo. */}
+                        <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-[#1D1D1F]">
+                            <img src="/logo-mark.png" alt="AgendaClinica" className="h-[18px] w-[18px] object-contain" />
                         </div>
                         <div>
                             <p className="text-[13px] font-semibold leading-none text-[#1D1D1F]">
@@ -86,8 +91,8 @@ export default function MobileNav({ role }) {
 
                         <div className="border-b border-[#E8E8ED] px-5 py-4">
                             <div className="flex items-center gap-3">
-                                <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl border border-[#E8E8ED] bg-[#F5F5F7]">
-                                    <img src="/logo.png" alt="AgendaClinica" className="h-7 w-7 object-contain" />
+                                <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-[#1D1D1F]">
+                                    <img src="/logo-mark.png" alt="AgendaClinica" className="h-[22px] w-[22px] object-contain" />
                                 </div>
                                 <div>
                                     <p className="text-[14px] font-semibold text-[#1D1D1F]">AgendaClinica</p>
