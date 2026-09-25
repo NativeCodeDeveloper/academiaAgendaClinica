@@ -1,4 +1,3 @@
-import FondoAcademia from "@/Componentes/FondoAcademia";
 import MobileNav from "./MobileNav";
 import SidebarLinks from "./SidebarLinks";
 import { getDashboardSectionsForRole } from "@/lib/dashboard-access";
@@ -20,13 +19,13 @@ export default async function DashboardLayout({ children }) {
     return (
         <div className="relative h-screen w-full overflow-hidden bg-[#F5F5F7]">
 
-            {/* El fondo de la Academia es el gris de las capsulas (#F5F5F7)
-                mas las manchas de color y el grano, que son comunes con la
-                portada y viven en src/Componentes/FondoAcademia.jsx. Antes
-                todo esto era negro, y no calzaba con las lecciones: al pasar
-                de una a otra la vista saltaba de oscuro a claro. El sidebar
-                oscuro flota encima, que es de donde sale el contraste. */}
-            <FondoAcademia />
+            {/* Adentro del dashboard el fondo es plano: el mismo #F5F5F7 que
+                cada capsula pinta en su propia pagina. Llego a tener el
+                degradado animado (FondoAcademia), pero las lecciones sí pintan
+                su fondo opaco, asi que el color solo asomaba en la franja del
+                sidebar y se cortaba en una linea vertical bien visible. El
+                degradado se queda donde no compite con nada: las dos portadas
+                de entrada. */}
 
             <div className="relative z-10 flex h-full w-full">
 

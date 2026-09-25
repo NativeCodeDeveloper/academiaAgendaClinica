@@ -186,6 +186,30 @@ html {
    margen de cada una y no como gap del contenedor: con gap, N tarjetas tienen
    N-1 espacios, el -50% se desfasa medio espacio y la cinta pega un salto en
    cada vuelta. */
+/* Entradas de la portada. El componente que las usa las da por existentes
+   (animate-fade-in / animate-fade-up), pero en este proyecto no estaban: como
+   el titulo y el subtitulo traen opacity-0 de base, sin estas reglas se
+   quedaban invisibles para siempre.
+
+   El `both` es lo que sostiene el estado final por encima del opacity-0. */
+@keyframes fade-in {
+  from { opacity: 0; transform: translateY(-1rem); }
+  to   { opacity: 1; transform: translateY(-0.25rem); }
+}
+
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(1.5rem); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.animate-fade-in {
+  animation: fade-in 900ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.animate-fade-up {
+  animation: fade-up 1100ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
 /* El canvas del fondo aparece con una transicion: al montarse de golpe sobre el
    degradado CSS se notaba el relevo entre las dos capas. */
 @keyframes aparecer-fondo {

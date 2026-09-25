@@ -1,44 +1,28 @@
 "use client";
 
 // ── Portada de la Academia ───────────────────────────────────────────────────
-// Es lo primero que ve quien entra a la Academia. Antes esta ruta solo hacía
-// redirect("/dashboard") y el usuario caía directo en el listado de cápsulas,
-// sin bienvenida. El redirect venía del middleware, no de esta página: ahí se
-// habilitó la raíz.
+// Es lo primero que ve quien entra. El boton "Comenzar" lleva al dashboard.
 //
-// Vive fuera del grupo (public) a propósito: ese layout agrega navbar, footer y
-// botón de WhatsApp, que le quitarían el aire a una portada a pantalla
-// completa.
+// Vive fuera del grupo (public) a proposito: ese layout agrega navbar, footer y
+// boton de WhatsApp, que le quitarian el aire a una portada a pantalla
+// completa. Y el middleware deja pasar "/" de forma explicita, porque antes
+// redirigia al dashboard y el usuario nunca veia esta pantalla.
 //
-// Fondo blanco, como el componente original, con el mismo tratamiento que el
-// dashboard encima: los degradados de marca (morado y cian) muy abiertos y la
-// capa de grano. Sin eso la portada quedaba en blanco plano y el dashboard
-// tenia color, asi que al entrar cambiaba el material de la pagina, no solo el
-// contenido.
+// Estuvo un tiempo con un carrusel de miniaturas de las capsulas
+// (AnimatedMarqueeHero, que sigue en el proyecto por si se quiere volver).
+// Hoy usa HeroPortada: el mismo degradado animado de fondo y el arco violeta
+// abajo.
 
-import AnimatedMarqueeHero from "@/Componentes/AnimatedMarqueeHero";
-import FondoAcademia from "@/Componentes/FondoAcademia";
-import { capsulas } from "@/lib/capsulas";
+import HeroPortada from "@/Componentes/HeroPortada";
 
 export default function PortadaAcademia() {
   return (
-    <div className="relative min-h-screen overflow-hidden bg-white">
-
-      <FondoAcademia tenue />
-
-      {/* z-10 propio: la portada tiene su carrusel en z-0 y el texto en z-10.
-          Sin este contenedor esos niveles conviven con los del fondo y el
-          carrusel termina por debajo del degradado. */}
-      <div className="relative z-10">
-      <AnimatedMarqueeHero
-        tagline="Estimado usuario"
-        title="Bienvenido a la Academia de Agenda Clínica"
-        description="Formación oficial de Agenda Clínica. Cada cápsula recorre un módulo real del sistema, paso a paso, para que tu equipo lo domine y tu clínica trabaje con el orden que necesita."
-        ctaText="Comenzar"
-        ctaHref="/dashboard"
-        videos={capsulas}
-      />
-      </div>
-    </div>
+    <HeroPortada
+      eyebrow="Estimado usuario"
+      title="Bienvenido a la Academia de Agenda Clínica"
+      subtitle="Formación oficial de Agenda Clínica. Cada cápsula recorre un módulo real del sistema, paso a paso, para que tu equipo lo domine y tu clínica trabaje con el orden que necesita."
+      ctaLabel="Comenzar"
+      ctaHref="/dashboard"
+    />
   );
 }
