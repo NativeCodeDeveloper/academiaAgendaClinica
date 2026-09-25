@@ -227,12 +227,24 @@ html {
   }
 }
 
-/* La regla global de "reducir movimiento" recorta toda animacion a 0.001ms,
-   lo que aqui dejaba la cinta saltada al final del recorrido. Se detiene
-   entera, que es lo que esa preferencia pide de verdad. */
+/* La cinta se mueve aunque el sistema pida reducir movimiento.
+
+   La regla global de mas abajo recorta toda animacion a 0.001ms y una sola
+   repeticion. Sobre esta cinta eso la dejaba quieta, y como "Reducir
+   movimiento" viene activado en muchos iPhone, ahi el carrusel simplemente no
+   funcionaba — en Chrome y en Safari por igual, porque es un ajuste del
+   sistema y no del navegador. Era exactamente lo que se estaba reportando.
+
+   Es una decision tomada a conciencia: esta animacion es un desplazamiento
+   lineal de 95 segundos por vuelta, sin parpadeos, sin rebotes y sin
+   paralaje — justo lo contrario de lo que esa preferencia busca evitar. El
+   resto del sitio la sigue respetando. */
 @media (prefers-reduced-motion: reduce) {
   .cinta-capsulas {
-    animation: none !important;
+    animation-name: desplazar-cinta !important;
+    animation-duration: 95s !important;
+    animation-timing-function: linear !important;
+    animation-iteration-count: infinite !important;
   }
 }
 
