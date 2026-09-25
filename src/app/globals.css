@@ -200,14 +200,39 @@ html {
 
 .cinta-capsulas {
   animation: desplazar-cinta 95s linear infinite;
-  will-change: transform;
+  /* Sin will-change a proposito. La cinta mide ~12.000 px de ancho; con
+     will-change el navegador la promueve a una capa y tiene que rasterizarla
+     entera en una sola textura. En pantalla retina eso son 24.000 px y en un
+     telefono 36.000, contra un limite de 16.384: la textura no cabe, y de ahi
+     salian las tres fallas juntas — se trababa al iniciar en el computador, no
+     animaba en el celular y parpadeaba. Sin will-change el navegador rasteriza
+     por partes, solo lo que se ve. */
+
+  /* Arranca detenida. La arranca el componente cuando las miniaturas ya
+     cargaron: el recorrido es un porcentaje del ancho propio, y ese ancho
+     cambia mientras las tarjetas se acomodan, asi que empezar antes producia
+     un salto justo al abrir. */
+  animation-play-state: paused;
+}
+
+.cinta-capsulas.en-marcha {
+  animation-play-state: running;
 }
 
 /* Solo se pausa donde hay un cursor de verdad. En pantallas tactiles el hover
    se queda pegado tras el primer toque y la cinta no volvia a arrancar. */
 @media (hover: hover) and (pointer: fine) {
-  .cinta-capsulas:hover {
+  .cinta-capsulas.en-marcha:hover {
     animation-play-state: paused;
+  }
+}
+
+/* La regla global de "reducir movimiento" recorta toda animacion a 0.001ms,
+   lo que aqui dejaba la cinta saltada al final del recorrido. Se detiene
+   entera, que es lo que esa preferencia pide de verdad. */
+@media (prefers-reduced-motion: reduce) {
+  .cinta-capsulas {
+    animation: none !important;
   }
 }
 

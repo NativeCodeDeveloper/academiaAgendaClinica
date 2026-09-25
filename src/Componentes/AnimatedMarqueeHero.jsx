@@ -18,7 +18,7 @@
 //    Se detiene al pasar el mouse. La animación vive en globals.css
 //    (.cinta-capsulas): ahí está explicado por qué no va en JS.
 
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
@@ -64,6 +64,40 @@ export default function AnimatedMarqueeHero({
   // Se duplican para que el recorrido cierre sin salto visible.
   const secuencia = [...videos, ...videos];
 
+  const cintaRef = useRef(null);
+  const [enMarcha, setEnMarcha] = useState(false);
+
+  // La cinta arranca detenida y se suelta cuando las miniaturas terminaron de
+  // cargar. El recorrido es -50% del ancho propio, y ese ancho todavia se esta
+  // acomodando mientras las imagenes llegan: soltarla antes hacia que la
+  // posicion se recalculara a mitad de camino y pegara un salto al abrir.
+  // El plazo de 3 s es la salida de emergencia: si una miniatura no llega
+  // nunca, la cinta igual se mueve.
+  useEffect(() => {
+    const cinta = cintaRef.current;
+    if (!cinta) return;
+
+    let vigente = true;
+    const soltar = () => { if (vigente) setEnMarcha(true); };
+
+    const imagenes = [...cinta.querySelectorAll("img")];
+    const pendientes = imagenes.filter((img) => !img.complete);
+
+    if (pendientes.length === 0) {
+      soltar();
+    } else {
+      let faltan = pendientes.length;
+      const contar = () => { if (--faltan <= 0) soltar(); };
+      pendientes.forEach((img) => {
+        img.addEventListener("load", contar, { once: true });
+        img.addEventListener("error", contar, { once: true });
+      });
+    }
+
+    const plazo = setTimeout(soltar, 3000);
+    return () => { vigente = false; clearTimeout(plazo); };
+  }, []);
+
   return (
     <section
       className={cn(
@@ -75,7 +109,8 @@ export default function AnimatedMarqueeHero({
           encima de las tarjetas, que es lo que le da profundidad a la portada. */}
       <div className="absolute inset-x-0 bottom-0 z-0 h-[42%] [mask-image:linear-gradient(to_bottom,transparent,black_20%,black_92%,transparent)] md:h-[44%]">
         <div
-          className="cinta-capsulas flex h-full items-center"
+          ref={cintaRef}
+          className={cn("cinta-capsulas flex h-full items-center", enMarcha && "en-marcha")}
           style={{ width: "max-content" }}
         >
           {secuencia.map((video, index) => (
